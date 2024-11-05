@@ -1,0 +1,15 @@
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\lab3.exe
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\lab3.deps.json
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\lab3.runtimeconfig.json
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\lab3.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\lab3.pdb
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.GeneratedMSBuildEditorConfig.editorconfig
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.AssemblyInfoInputs.cache
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.AssemblyInfo.cs
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.csproj.CoreCompileInputs.cache
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\refint\lab3.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.pdb
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.genruntimeconfig.cache
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\ref\lab3.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.csproj.AssemblyReference.cache
