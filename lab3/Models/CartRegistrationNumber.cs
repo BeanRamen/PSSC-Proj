@@ -9,7 +9,7 @@ namespace lab3.Models
 
         public string Value { get; }
 
-        private CartRegistrationNumber(string value)
+        public CartRegistrationNumber(string value)
         {
             if (IsValid(value))
             {

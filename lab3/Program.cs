@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using static lab3.Models.ItemPublishedEvent;
+using PricesContext = lab3.Models.PricesContext;
 
 namespace lab3
 {
@@ -16,24 +17,26 @@ namespace lab3
   {
     private static string ConnectionString = "Server=localhost\\SQLEXPRESS;Database=Cart;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true";
     
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
       using ILoggerFactory loggerFactory = ConfigureLoggerFactory();
       ILogger<PublishItemWorkflow> logger = loggerFactory.CreateLogger<PublishItemWorkflow>();
       DbContextOptionsBuilder<PricesContext> dbContextBuilder = new DbContextOptionsBuilder<PricesContext>()
         .UseSqlServer(ConnectionString)
         .UseLoggerFactory(loggerFactory);
-      
       PricesContext pricesContext = new(dbContextBuilder.Options);
       CartsRepository cartsRepository = new(pricesContext);
-      PricesRepository itemsRepository = new(pricesContext);
-      
-      UnvalidatedCartPrice[] listOfPrices = ReadListOfPrices().ToArray();      
-      PublishItemCommand command = new(listOfPrices);
-      PublishItemWorkflow workflow = new();
-      IItemPublishedEvent result = workflow.Execute(command, CheckCartExists);
+      PricesRepository pricesRepository = new(pricesContext);
 
-      string message = result switch
+      //get user input
+      UnvalidatedCartPrice[] listOfPrices = ReadListOfPrices().ToArray();
+
+      //execute domain workflow
+      PublishItemCommand command = new(listOfPrices);
+      PublishItemWorkflow workflow = new(cartsRepository, pricesRepository, logger);
+      IItemPublishedEvent result = await workflow.ExecuteAsync(command);
+
+      string consoleMessage = result switch
       {
         ItemPublishSucceededEvent @event => @event.Csv,
         ItemPublishFailedEvent @event => $"Publish failed: \r\n{string.Join("\r\n", @event.Reasons)}",
@@ -45,12 +48,12 @@ namespace lab3
       Console.WriteLine("Catalog Preturi:");
       Console.WriteLine("============================");
       
-      Console.WriteLine(message);
+      Console.WriteLine(consoleMessage);
     }
 
     private static ILoggerFactory ConfigureLoggerFactory()
     {
-      return new LoggerFactory.Cretate(builder =>
+      return LoggerFactory.Create(builder =>
         builder.AddSimpleConsole(options =>
           {
             options.IncludeScopes = true;
@@ -94,10 +97,5 @@ namespace lab3
       Console.Write(prompt);
       return Console.ReadLine();
     }
-
-    private static bool CheckCartExists(CartRegistrationNumber registrationNumber) =>
-      ExistingCarts.Contains(registrationNumber.Value);
-
-    private static readonly IEnumerable<string> ExistingCarts = ["123", "234", "345", "456"];
   }
 }
