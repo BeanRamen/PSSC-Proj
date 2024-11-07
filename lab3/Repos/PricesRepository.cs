@@ -38,8 +38,7 @@ namespace lab3.Repos
           TVA: result.TVA is null ? null : new Price(result.TVA.Value),
           FinalPrice: result.Final is null ? null : new Price(result.Final.Value))
         { 
-          
-          PriceId= result.PriceId
+          PriceId = result.PriceId
         })
          .ToList();
 

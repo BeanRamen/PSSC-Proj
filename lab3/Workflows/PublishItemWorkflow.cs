@@ -19,8 +19,8 @@ namespace lab3.Workflows
 
     public PublishItemWorkflow(ICartsRepository cartsRepository, IPricesRepository pricesRepository, ILogger<PublishItemWorkflow> logger)
     {
-      this.CartsRepository = cartsRepository;
-      this.PricesRepository = pricesRepository;
+      this.cartsRepository = cartsRepository;
+      this.pricesRepository = pricesRepository;
       this.logger = logger;
     }
 

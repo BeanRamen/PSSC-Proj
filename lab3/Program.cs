@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using static lab3.Models.ItemPublishedEvent;
-using PricesContext = lab3.Models.PricesContext;
+using PricesContext = lab3.Repos.PricesContext;
 
 namespace lab3
 {
