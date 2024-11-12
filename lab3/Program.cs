@@ -81,7 +81,7 @@ namespace lab3
           break;
         }
 
-        string? TVA = ReadValue("TVA: ");
+        string? TVA = ReadValue("Reducere: ");
         if (string.IsNullOrEmpty(TVA))
         {
           break;

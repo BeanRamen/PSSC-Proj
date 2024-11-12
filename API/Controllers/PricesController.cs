@@ -30,7 +30,7 @@ namespace API.Controllers
       {
         CartRegistrationNumber = price.CartRegistrationNumber.Value,
         ItemPrice = price.ItemPrice?.Value,
-        ActivityPrice = price.TVA?.Value,
+        Reducere = price.TVA?.Value + " %",
         FinalPrice = price.FinalPrice?.Value
       });
       return Ok(result);
