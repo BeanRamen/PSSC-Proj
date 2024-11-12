@@ -24,9 +24,9 @@ namespace lab3.Repos
     {
       //load entities from database
       var foundCartPrices = await (
-        from g in dbContext.Prices
-        join s in dbContext.Carts on g.CartId equals s.CartId
-        select new { s.RegistrationNumber, g.PriceId, g.Item, g.TVA, g.Final }
+        from p in dbContext.Prices
+        join c in dbContext.Carts on p.CartId equals c.CartId
+        select new { c.RegistrationNumber, p.PriceId, p.Item, p.TVA, p.Final }
       ).AsNoTracking()
        .ToListAsync();
 

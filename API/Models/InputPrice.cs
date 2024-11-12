@@ -5,6 +5,12 @@ namespace API.Models
 {
     public class InputPrice
     {
+        public InputPrice(string item, string tva)
+        {
+            Item = item;
+            TVA = tva;
+        }
+
         [Required]
         //[RegularExpression(CartRegistrationNumbe)]
         public string RegistrationNumber { get; set; } = string.Empty;
@@ -14,7 +20,7 @@ namespace API.Models
         public string Item { get; set; }
 
         [Required]
-        [Range(1, 10)]
+        [Range(0, 10)]
         public string TVA { get; set; }
     }
 }
