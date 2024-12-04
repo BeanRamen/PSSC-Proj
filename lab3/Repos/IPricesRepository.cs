@@ -9,5 +9,7 @@ namespace lab3.Repos
         Task<List<CalculatedCartPrice>> GetExistingPricesAsync();
 
         Task SavePricesAsync(Item.PublishedItem prices);
+        Task UpdatePriceAsync(CalculatedCartPrice updatedProduct);
+        Task DeletePriceAsync(CalculatedCartPrice productToDelete);
     }
 }

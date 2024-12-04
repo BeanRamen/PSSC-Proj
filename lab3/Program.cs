@@ -27,7 +27,7 @@ namespace lab3
       PricesContext pricesContext = new(dbContextBuilder.Options);
       CartsRepository cartsRepository = new(pricesContext);
       PricesRepository pricesRepository = new(pricesContext);
-
+      
       //get user input
       UnvalidatedCartPrice[] listOfPrices = ReadListOfPrices().ToArray();
 
@@ -45,10 +45,68 @@ namespace lab3
 
       Console.WriteLine();
       Console.WriteLine("============================");
-      Console.WriteLine("Catalog Preturi:");
+      Console.WriteLine("    Newly added items:");
       Console.WriteLine("============================");
       
       Console.WriteLine(consoleMessage);
+      
+      string? proceedWithCheckout = ReadValue("Proceed With Checkout? (y/n): ");
+      string? awb = null;
+      if (proceedWithCheckout != null && proceedWithCheckout.Equals("y", StringComparison.OrdinalIgnoreCase))
+      {
+        string? cartRegistrationNumber = ReadValue("Enter the cart registration number for modifications and receipt processing: ");
+
+        if (!string.IsNullOrEmpty(cartRegistrationNumber))
+        {
+          // Afisare produse din cos
+          GenerateReceiptWorkflow generateReceiptWorkflow = new(pricesRepository);
+          string receipt = await generateReceiptWorkflow.ExecuteAsync(new CartRegistrationNumber(cartRegistrationNumber));
+          Console.WriteLine(receipt);
+
+          // Modificare cos
+          ModifyCartWorkflow modifyCartWorkflow = new(pricesRepository);
+          while (true)
+          {
+            string cartDetails = await modifyCartWorkflow.ExecuteAsync(cartRegistrationNumber);
+            Console.WriteLine(cartDetails);
+
+            string? continueModifying = ReadValue("Would you like to make more changes? (y/n): ");
+            if (continueModifying == null || continueModifying.Equals("n", StringComparison.OrdinalIgnoreCase))
+            {
+              break;
+            }
+          }
+
+          // Generare AWB și adresa
+          string? generateAWB = ReadValue("Generate AWB and delivery address? (y/n): ");
+          if (generateAWB != null && generateAWB.Equals("y", StringComparison.OrdinalIgnoreCase))
+          {
+            GenerateAWBWorkflow generateAWBWorkflow = new();
+            var (address, generatedAWB) = await generateAWBWorkflow.ExecuteAsync();
+            awb = generatedAWB;
+            Console.WriteLine($"Delivery Address: {address}");
+            Console.WriteLine($"AWB: {awb}");
+          }
+
+          // Generare chitanta finala
+          string finalReceipt = await generateReceiptWorkflow.ExecuteAsync(new CartRegistrationNumber(cartRegistrationNumber));
+          Console.WriteLine(finalReceipt);
+          
+          if (!string.IsNullOrEmpty(awb))
+          {
+            Console.WriteLine($"AWB: {awb}");
+          }
+          else
+          {
+            Console.WriteLine("AWB not generated.");
+          }
+        }
+      }
+      else
+      {
+        Console.WriteLine("Keep shopping");
+      }
+      
     }
 
     private static ILoggerFactory ConfigureLoggerFactory()

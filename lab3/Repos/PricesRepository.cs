@@ -13,6 +13,33 @@ namespace lab3.Repos
 {
   public class PricesRepository : IPricesRepository
   {
+    public async Task UpdatePriceAsync(CalculatedCartPrice updatedProduct)
+    {
+      var existingProduct = await dbContext.Prices
+        .FirstOrDefaultAsync(p => p.PriceId == updatedProduct.PriceId);
+
+      if (existingProduct != null)
+      {
+        existingProduct.Item = updatedProduct.ItemPrice?.Value;
+        existingProduct.TVA = updatedProduct.TVA?.Value;
+        existingProduct.Final = updatedProduct.FinalPrice?.Value;
+        
+        await dbContext.SaveChangesAsync();
+      }
+    }
+    public async Task DeletePriceAsync(CalculatedCartPrice productToDelete)
+    {
+      var existingProduct = await dbContext.Prices
+        .FirstOrDefaultAsync(p => p.PriceId == productToDelete.PriceId);
+
+      if (existingProduct != null)
+      {
+        dbContext.Prices.Remove(existingProduct);
+        await dbContext.SaveChangesAsync();
+      }
+    }
+
+    
     private readonly PricesContext dbContext;
 
     public PricesRepository(PricesContext dbContext)
