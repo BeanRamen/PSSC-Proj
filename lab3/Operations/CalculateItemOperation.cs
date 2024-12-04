@@ -17,16 +17,14 @@ namespace lab3.Operations
                         validItem.CartRegistrationNumber,
                         validItem.ItemPrice,
                         validItem.TVA,
-                        CalculateFinalGrade(validItem)));
+                        CalculateFinalPrice(validItem)));
             return new Item.CalculatedItem(calculatedPrice.ToList().AsReadOnly());
         }
 
-        private static Price? CalculateFinalGrade(ValidatedCartPrice validPrice)
+        private static Price? CalculateFinalPrice(ValidatedCartPrice validPrice)
         {
             return validPrice.ItemPrice is not null
-                   && validPrice.ItemPrice.Value >= 5
                    && validPrice.TVA is not null
-                   && validPrice.TVA.Value >= 5
                 ? validPrice.ItemPrice + validPrice.TVA
                 : null;
         }

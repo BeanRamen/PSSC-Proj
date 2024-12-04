@@ -16,11 +16,11 @@ namespace API.Models
         public string RegistrationNumber { get; set; } = string.Empty;
 
         [Required]
-        [Range(1, 10)]
+        [Range(1, 10000)]
         public string Item { get; set; }
 
         [Required]
-        [Range(0, 10)]
+        [Range(0, 10000)]
         public string TVA { get; set; }
     }
 }
