@@ -21,6 +21,7 @@ namespace API.Controllers
       this.publishPriceWorkflow = publishPriceWorkflow;
       _httpClientFactory = httpClientFactory;
     }
+    
 
     [HttpGet("getAllPrices")]
     public async Task<IActionResult> GetAllPrices([FromServices] IPricesRepository pricesRepository)
@@ -36,6 +37,29 @@ namespace API.Controllers
       return Ok(result);
     }
 
+    [HttpGet("generateReceipt/{cartRegistrationNumber}")]
+    public async Task<IActionResult> GenerateReceipt(
+      [FromServices] GenerateReceiptWorkflow generateReceiptWorkflow,
+      string cartRegistrationNumber)
+    {
+      var receipt = await generateReceiptWorkflow.ExecuteAsync(new CartRegistrationNumber(cartRegistrationNumber));
+      return Ok(new { Message = "Receipt generated successfully.", Receipt = receipt });
+    }
+
+    [HttpGet("generateAwb")]
+    public async Task<IActionResult> GenerateAwb([FromServices] GenerateAWBWorkflow generateAWBWorkflow)
+    {
+      var (address, awb) = await generateAWBWorkflow.ExecuteAsync();
+      return Ok(new
+      {
+        Message = "AWB generated successfully.",
+        DeliveryAddress = address,
+        AWB = awb
+      });
+    }
+
+
+    
     [HttpPost]
     public async Task<IActionResult> PublishPrices([FromBody] InputPrice[] prices)
     {
@@ -58,7 +82,7 @@ namespace API.Controllers
 
     private static UnvalidatedCartPrice MapInputPriceToUnvalidatedPrice(InputPrice price) => new(
         CartRegistrationNumber: price.RegistrationNumber,
-        ItemPrice: price.Item,
+        ItemPrice: price.ItemPrice,
         TVA: price.TVA);
   }
 }

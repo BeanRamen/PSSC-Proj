@@ -15,6 +15,10 @@ namespace API
 
             // Add services to the container.
 
+            builder.Services.AddTransient<GenerateAWBWorkflow>();
+            builder.Services.AddTransient<GenerateReceiptWorkflow>();
+            builder.Services.AddTransient<ModifyCartWorkflow>();
+            
             builder.Services.AddDbContext<PricesContext>
                 (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

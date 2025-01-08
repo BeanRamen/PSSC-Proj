@@ -96,3 +96,6 @@ D:\downloads\ANUL 4\PSSC\LAB\lab3\API\obj\Debug\net8.0\refint\API.dll
 D:\downloads\ANUL 4\PSSC\LAB\lab3\API\obj\Debug\net8.0\API.pdb
 D:\downloads\ANUL 4\PSSC\LAB\lab3\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 D:\downloads\ANUL 4\PSSC\LAB\lab3\API\obj\Debug\net8.0\ref\API.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\API\bin\Debug\net8.0\Azure.Core.Amqp.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\API\bin\Debug\net8.0\Azure.Messaging.ServiceBus.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\API\bin\Debug\net8.0\Microsoft.Azure.Amqp.dll

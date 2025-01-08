@@ -75,3 +75,6 @@ D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\runtimes\win\lib\net6.0\
 D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\obj\Debug\net8.0\lab3.csproj.Up2Date
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\Azure.Core.Amqp.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\Azure.Messaging.ServiceBus.dll
+D:\downloads\ANUL 4\PSSC\LAB\lab3\lab3\bin\Debug\net8.0\Microsoft.Azure.Amqp.dll
