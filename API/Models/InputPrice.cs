@@ -5,9 +5,9 @@ namespace API.Models
 {
     public class InputPrice
     {
-        public InputPrice(string item, string tva)
+        public InputPrice(string itemprice, string tva)
         {
-            Item = item;
+            ItemPrice = itemprice;
             TVA = tva;
         }
 
@@ -17,7 +17,7 @@ namespace API.Models
 
         [Required]
         [Range(1, 10000)]
-        public string Item { get; set; }
+        public string ItemPrice { get; set; }
 
         [Required]
         [Range(0, 10000)]
